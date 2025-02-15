@@ -16,7 +16,7 @@ func main() {
 	router.NotFoundHandler = http.HandlerFunc(exceptions.NotFound)
 	router.MethodNotAllowedHandler = http.HandlerFunc(exceptions.NotAllowedHandler)
 	// Paths version 1.0.0
-	versionPrefix := router.PathPrefix("/1.0.0").Subrouter()
+	versionPrefix := router.PathPrefix("/v1.0.0").Subrouter()
 	// Final path API
 	finalPath := versionPrefix.PathPrefix("/compound-interest").Subrouter()
 
