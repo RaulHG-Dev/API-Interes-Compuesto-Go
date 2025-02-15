@@ -48,8 +48,8 @@ func CalculateByYear(w http.ResponseWriter, r *http.Request) {
 	var response messageJsonYear
 
 	response.body.Success = true
-	response.body.CodeError = http.StatusAccepted
-	response.body.Message = http.StatusText(http.StatusAccepted)
+	response.body.CodeError = http.StatusOK
+	response.body.Message = http.StatusText(http.StatusOK)
 
 	for year := 1; year <= int(anios); year++ {
 		response.Data = append(response.Data, dataYear{
@@ -80,8 +80,8 @@ func CalculateByMonth(w http.ResponseWriter, r *http.Request) {
 	var response messageJsonMonth
 
 	response.body.Success = true
-	response.body.CodeError = http.StatusAccepted
-	response.body.Message = http.StatusText(http.StatusAccepted)
+	response.body.CodeError = http.StatusOK
+	response.body.Message = http.StatusText(http.StatusOK)
 
 	counterMonth := 1
 	for year := 1; year <= int(anios); year++ {
