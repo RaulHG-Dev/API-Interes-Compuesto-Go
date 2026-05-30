@@ -31,5 +31,7 @@ func main() {
 		ReadTimeout:  15 * time.Second,
 	}
 
+	log.Printf("Servidor corriendo en puerto 8000")
+
 	log.Fatal(srv.ListenAndServe())
 }
