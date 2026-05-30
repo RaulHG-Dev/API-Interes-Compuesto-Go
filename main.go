@@ -5,12 +5,23 @@ import (
 	"api_interes_compuesto/exceptions"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	if err := godotenv.Load(); err != nil {
+		log.Println("No se encontro archivo .env, se usaran variables del sistema")
+	}
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000"
+	}
+
 	router := mux.NewRouter()
 
 	router.NotFoundHandler = http.HandlerFunc(exceptions.NotFound)
@@ -25,13 +36,13 @@ func main() {
 
 	srv := &http.Server{
 		Handler: router,
-		Addr:    ":8000",
+		Addr:    ":" + port,
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
 
-	log.Printf("Servidor corriendo en puerto 8000")
+	log.Printf("Servidor corriendo en puerto %s", port)
 
 	log.Fatal(srv.ListenAndServe())
 }
